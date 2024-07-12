@@ -1,0 +1,6 @@
+index="main" sourcetype=sample_log
+| regex _raw="\b(?:\d{1,3}\.){3}\d{1,3}\b"
+| rex field=_raw "\b(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b"
+| table ip
+| tail 10
+| abuseipdbcheck ip=ip
